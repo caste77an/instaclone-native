@@ -5,7 +5,12 @@ import * as Font from "expo-font";
 import { Asset } from "expo-asset";
 import AppLoading from "expo-app-loading";
 import LoggedOutNav from "./navigators/LoggedOutNav";
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  DarkTheme,
+  NavigationContainer,
+  ThemeProvider,
+} from "@react-navigation/native";
+import { Appearance, AppearanceProvider } from "react-native-appearance";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -13,7 +18,6 @@ export default function App() {
   const preload = () => {
     const fontsToLoad = [Ionicons.font];
     const fontPromises = fontsToLoad.map((font) => Font.loadAsync(font));
-    console.log(fontPromises, imagePromises);
     const imageToLoad = [
       require("./assets/logo.png"),
       "https://raw.githubusercontent.com/nomadcoders/instaclone-native/93a5b77e98eefdf5084bfae44653ba67e4ca312c/assets/logo.png",
@@ -35,6 +39,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <LoggedOutNav />
+      <StatusBar style="light" />
     </NavigationContainer>
   );
 }
