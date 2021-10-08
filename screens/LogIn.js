@@ -16,8 +16,12 @@ export default function LogIn() {
   };
 
   useEffect(() => {
-    register("username");
-    register("password");
+    register("username", {
+      required: true,
+    });
+    register("password", {
+      required: true,
+    });
   }, [register]);
 
   return (
