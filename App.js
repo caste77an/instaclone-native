@@ -5,12 +5,7 @@ import * as Font from "expo-font";
 import { Asset } from "expo-asset";
 import AppLoading from "expo-app-loading";
 import LoggedOutNav from "./navigators/LoggedOutNav";
-import {
-  DarkTheme,
-  NavigationContainer,
-  ThemeProvider,
-} from "@react-navigation/native";
-import { Appearance, AppearanceProvider } from "react-native-appearance";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
