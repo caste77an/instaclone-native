@@ -14,12 +14,22 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const onFinish = () => setLoading(false);
   const isLoggedIn = useReactiveVar(isLoggedInVar);
+
   const preloadAssets = () => {
     const fontsToLoad = [Ionicons.font];
     const fontPromises = fontsToLoad.map((font) => Font.loadAsync(font));
     const imageToLoad = [require("./assets/logo.png")];
     const imagePromises = imageToLoad.map((image) => Asset.loadAsync(image));
     return Promise.all([...fontPromises, ...imagePromises]);
+  };
+
+  const preload = async () => {
+    const token = await AsyncStorage.getItem("token");
+    if (token) {
+      isLoggedInVar(true);
+      tokenVar(token);
+    }
+    return preloadAssets();
   };
 
   if (loading) {
@@ -35,7 +45,8 @@ export default function App() {
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
-        {isLoggedIn ? <LoggedInNav /> : <LoggedOutNav />}
+        {/* {isLoggedIn ? <LoggedInNav /> : <LoggedOutNav />} */}
+        <LoggedInNav />
       </NavigationContainer>
     </ApolloProvider>
   );
